@@ -47,7 +47,7 @@ class FlexSlide():
 
          
 
-    def addimg(self,path,caption="",flxwidth=None,width=None,frag=False):
+    def addimg(self,path,caption="",flxwidth=None,width=None,frag=False,alt=None):
         """Adds an image"""
         addcap=""
         cls=""
@@ -55,11 +55,13 @@ class FlexSlide():
             cls="class=\"%s\""%flxwidth
         if caption:
             addcap="<small>%s</small>"%caption
+        if not alt:
+            alt=caption
 
         if width:
-            md="<div %s><img src=\"%s\" alt=\"%s\" style=\"width:%s;\" />%s</div>"%(cls,path,caption,width,addcap)
+            md="<div %s><img src=\"%s\" alt=\"%s\" style=\"width:%s;\" />%s</div>"%(cls,path,alt,width,addcap)
         else:
-            md="<div %s><img src=\"%s\" alt=\"%s\" />%s</div>"%(cls,path,caption,addcap)
+            md="<div %s><img src=\"%s\" alt=\"%s\" style=\"width:100%%;\"/>%s</div>"%(cls,path,alt,addcap)
 
         self.addmd(md,frag=frag)
             
