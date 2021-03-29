@@ -80,17 +80,29 @@ class FlexSlide():
     def addVideo(self,path,width=None):
         self.addmd(Video(path)._repr_html_(),width=width)
         
+    def addul(self,items,frag=False):
+        """produces html ul item lists from item lists"""
+        if type(items) != list:
+            return ""
 
-    def addItems(self,items,frag=False,flxwidth=None):       
         html="<ul>"
 
         for item in items:
+            if type(item) == list:
+                #recursively call this function
+                html+=self.addul(item,frag)
+                continue
+
             if frag:
                 html+="<li class=\"fragment fade-in\">%s</li>"%item
             else:
                 html+="<li>%s</li>"%item
 
         html+="</ul>"
+        return html
+
+    def addItems(self,items,frag=False,flxwidth=None):       
+        html=self.addul(items,frag)
         self.addmd(html,flxwidth=flxwidth)
 
     def addSVG(self,svgname,width=None,height=None):
