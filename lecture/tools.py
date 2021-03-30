@@ -46,13 +46,19 @@ class FlexSlide():
         self.payload=""  
 
          
+    def makeClass(self,flxwidth="",align=""):
+        if flxwidth or align:
+            return "class=\"%s %s\""%(flxwidth,align)
+        else:
+            return ""
 
-    def addimg(self,path,caption="",flxwidth=None,width=None,frag=False,alt=None):
+    def addimg(self,path,caption="",flxwidth="",width=None,frag=False,alt=None,align=""):
         """Adds an image"""
         addcap=""
-        cls=""
-        if flxwidth:
-            cls="class=\"%s\""%flxwidth
+        cls=self.makeClass(flxwidth,align)
+
+        # if flxwidth:
+            # cls="class=\"%s\""%flxwidth
         if caption:
             addcap="<small>%s</small>"%caption
         if not alt:
@@ -73,8 +79,11 @@ class FlexSlide():
             cls+=flxwidth
         if frag:
             cls+=" fragment fade-in"
-
-        self.payload+="\n<div class=\"%s\">\n\n"%(cls)+mdcontent+"</div>"
+        if cls:
+            self.payload+="\n<div class=\"%s\">\n\n"%(cls)+mdcontent+"</div>"
+        else:
+            #wrap without div
+            self.payload+="\n"+mdcontent
 
 
     def addVideo(self,path,width=None):

@@ -13,12 +13,21 @@ sup {
   background: transparent;
 }
 
+.rise-enabled .reveal section img{
+  background: transparent;
+  margin-left:inherit;
+  margin-right:inherit;
+}
 .container.slides .celltoolbar, .container.slides div.input.hide-in-slideshow {
     display: none ! important;
 }
 
 .div.prompt.prompt_output.hide-in-slideshow {
     display: none ! important;
+}
+
+.div.cell.selected{
+  border-color:transparent;
 }
 
 .flxsld {
@@ -74,6 +83,12 @@ sup {
 }
 .reveal small{
   max-width: fit-content;
+}
+
+.reveal .center{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
 }
 
 #rise-footer {
